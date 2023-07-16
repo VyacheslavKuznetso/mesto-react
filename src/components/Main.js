@@ -19,7 +19,7 @@ function Main(props) {
                 setUserAvatar(userInfo.avatar)
             })
             .catch(console.error)
-    })
+    }, [])
 
     React.useEffect(() => {
         api.getInitialCards()
@@ -27,7 +27,7 @@ function Main(props) {
                 setCards(initialCards);
             })
             .catch(console.error)
-    });
+    }, []);
 
     return (
         <main className="content">

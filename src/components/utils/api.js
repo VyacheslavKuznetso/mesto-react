@@ -4,13 +4,13 @@ class Api {
         this._headers = headers;
     }
 
-    postUserInfo(forInput) {
+    postUserInfo({name, description}) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: forInput.userName,
-                about: forInput.userRole
+                name: name,
+                about: description
             })
         })
             .then(this._checkResponse)
@@ -62,21 +62,15 @@ class Api {
             .then(this._checkResponse)
     }
 
-    likeCard(id) {
+    likeCard(id, isLiked) {
+        this._khabegr = isLiked ? 'DELETE' : 'PUT'
         return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-            method: 'PUT',
+            method: this._khabegr,
             headers: this._headers
         })
             .then(this._checkResponse)
     }
 
-    deleteLikeCard(id) {
-        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
-            method: 'DELETE',
-            headers: this._headers
-        })
-            .then(this._checkResponse)
-    }
 
     _checkResponse(res) {
         if (res.ok) {

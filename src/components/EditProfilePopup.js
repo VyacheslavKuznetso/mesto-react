@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from './contexts/CurrentUserContext'
 
@@ -33,15 +32,15 @@ function EditProfilePopup(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        // Вызов метода для обновления профиля, используя значения name и description
-        props.onUpdateUser(
-          name,
-          description
-        );
+        
+        props.onUpdateUser({
+            name,
+            about: description
+        });
     }
 
     return (
-        <PopupWithForm nameFor="edit-form" isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit} nameId="editForm" formId="editForm" title="Редактировать профиль" submitButtonLabel="Сохранить">
+        <PopupWithForm nameFor="edit-form" isOpen={props.isOpen} onClose={props.onClose} handleSubmit={handleSubmit} nameId="editForm" formId="editForm" title="Редактировать профиль" submitButtonLabel="Сохранить">
             <div className="popup__input-container">
                 <input id="name" required minLength={2} maxLength={40} className="popup__form-input popup__form-input_text_name" placeholder="Name" type="text" name="userName" value={name} onChange={handleChange} />
                 <span id="name-error" className="popup__message"></span>

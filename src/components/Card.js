@@ -34,6 +34,9 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     onCardDelete(card)
   }
 
+  
+
+
   return (
     <article className="element">
       <img className="element__image" src={card.link} alt={card.name} onClick={handleClick} />

@@ -4,7 +4,7 @@ class Api {
         this._headers = headers;
     }
 
-    postUserInfo({name, description}) {
+    postUserInfo({name, about: description}) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
@@ -16,12 +16,12 @@ class Api {
             .then(this._checkResponse)
     }
 
-    postUserAvatar(forInput) {
+    postUserAvatar({avatar: avatar}) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: forInput.linkAvatar
+                avatar: avatar
             })
         })
             .then(this._checkResponse)
@@ -41,13 +41,13 @@ class Api {
             .then(this._checkResponse)
     }
 
-    addCard(values) {
+    addCard({name, link}) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name: values.name,
-                link: values.link
+                name: name,
+                link: link
             })
         })
             .then(this._checkResponse)

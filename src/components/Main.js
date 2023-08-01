@@ -1,7 +1,7 @@
 import React from 'react';
-import api from './utils/api'
+import api from '../utils/api'
 import Card from './Card'
-import { CurrentUserContext } from './contexts/CurrentUserContext'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 
 
@@ -23,18 +23,18 @@ function Main(props) {
             <section className="block-profile">
                 <div className="profile">
                     <div className="profile__coteiner-avatar">
-                        {currentUser && <img className="profile__avatar" src={currentUser.avatar} />}
-                        <button className="profile__edit-avatar-button" type="button" aria-label="Редактировать аватар" id="profileEditAvatar" onClick={props.isEditAvatarPopupOpen}></button>
+                        <img className="profile__avatar" src={currentUser.avatar} />
+                        <button className="profile__edit-avatar-button" type="button" aria-label="Редактировать аватар" id="profileEditAvatar" onClick={props.onEditAvatar}></button>
                     </div>
                     <div className="profile__info-block">
                         <div className="profile__data">
-                            <h1 className="profile__title">{currentUser && currentUser.name}</h1>
+                            <h1 className="profile__title">{currentUser.name}</h1>
                             <button className="profile__edit-button" type="button" aria-label="Редактировать" id="editUser" onClick={props.onEditProfile}></button>
                         </div>
-                        <p className="profile__subtitle" id="specially">{currentUser && currentUser.about}</p>
+                        <p className="profile__subtitle" id="specially">{currentUser.about}</p>
                     </div>
                 </div>
-                <button className="block-profile__add-button" type="button" aria-label="Добывить" id="addContentButton" onClick={props.isAddPlacePopupOpen}></button>
+                <button className="block-profile__add-button" type="button" aria-label="Добывить" id="addContentButton" onClick={props.onAddPlace}></button>
             </section>
             <section className="elements">
                 <CurrentUserContext.Provider value={currentUser}>

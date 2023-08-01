@@ -104,7 +104,8 @@ function App() {
                     const newCards = prevCards.map((c) => (c._id === card._id ? newCard : c));
                     return newCards;
                 });
-            });
+            })
+            .catch(console.err);
     }
 
     function handleCardDelete(card) {
@@ -117,7 +118,8 @@ function App() {
                     const updatedCards = prevCards.filter((c) => c._id !== card._id);
                     return updatedCards;
                 });
-            });
+            })
+            .catch(console.err);
     }
 
     return (

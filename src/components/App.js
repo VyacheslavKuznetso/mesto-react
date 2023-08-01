@@ -105,7 +105,7 @@ function App() {
                     return newCards;
                 });
             })
-            .catch(console.err);
+            .catch(console.error);
     }
 
     function handleCardDelete(card) {
@@ -119,7 +119,7 @@ function App() {
                     return updatedCards;
                 });
             })
-            .catch(console.err);
+            .catch(console.error);
     }
 
     return (

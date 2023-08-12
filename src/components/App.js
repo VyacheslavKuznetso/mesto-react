@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import Header from './Header';
 import Main from './Main';
@@ -9,7 +10,8 @@ import api from '../utils/api'
 import EditProfilePopup from './EditProfilePopup'
 import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
-
+import Login from './Login'
+import Register from './Register'
 
 
 function App() {
@@ -123,18 +125,25 @@ function App() {
     }
 
     return (
-        <>
-            <Header />
+        <BrowserRouter>
             <CurrentUserContext.Provider value={currentUser}>
-                <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
-                <Footer />
-                <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-                <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-                <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateAddCard={handleAddPlaceSubmit} />
-                <PopupWithForm name="delete" nameId="delete" formId="deleteForm" title="Вы уверены?" submitButtonLabel="Да" ></PopupWithForm>
-                <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+                <div className='page'>
+                    <Routes>
+                        <Header />
+                        <Route path='/' element={<Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />} />
+                        <Footer />
+                        <Route path='/sign-in' element={<Login />} />
+                        <Route path='/sign-up' element={<Register />} />
+                    </Routes>
+                    <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+                    <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+                    <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateAddCard={handleAddPlaceSubmit} />
+                    <PopupWithForm name="delete" nameId="delete" formId="deleteForm" title="Вы уверены?" submitButtonLabel="Да" ></PopupWithForm>
+                    <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+                </div>
             </CurrentUserContext.Provider>
-        </>
+        </BrowserRouter>
+
     );
 }
 

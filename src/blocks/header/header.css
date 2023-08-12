@@ -1,5 +1,6 @@
 .header {
     display: flex;
+    justify-content: space-between;
     font-family: 'Inter', sans-serif;
     width: 68.75%;
     margin-top: 45px;
